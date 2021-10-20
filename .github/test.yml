@@ -1,0 +1,17 @@
+name: Manual Release Workflow
+
+on: 
+  workflow_dispatch:
+    inputs:
+      name:
+        description: '名前を書け'
+        default: '花子'
+        required: true
+      age:
+        description: '年齢'
+          default: '34'
+....
+      - name: Get Value
+        run: |
+          echo ${{ github.event.inputs.name }}
+          echo ${{ github.event.inputs.age }}
