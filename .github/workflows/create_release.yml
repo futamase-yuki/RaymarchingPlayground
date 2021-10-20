@@ -11,7 +11,7 @@ on:
       version:
         description: 'バージョン'
         required: true
-        default: 'x.x.x'
+        default: '1.0.0'
         
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
@@ -34,6 +34,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          git fetch
           git checkout tkb/${{ github.event.inputs.version }}
           git push
           hub pull-request -b tkb/${{ github.event.inputs.version }} -m "tkb/${{ github.event.inputs.version }}"
