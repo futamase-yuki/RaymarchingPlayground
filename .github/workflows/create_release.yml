@@ -29,3 +29,7 @@ jobs:
         run: |
           git checkout -b release/${{ github.event.inputs.version }}
           git push origin release/${{ github.event.inputs.version }}
+      - name: merge tkb
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh pr merge tkb/${{ github.event.inputs.version }} --merge
