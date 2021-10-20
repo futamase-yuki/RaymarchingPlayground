@@ -24,17 +24,21 @@ jobs:
         with:
           fetch-depth: 0 # https://zenn.dev/satococoa/articles/e026c0689e5678
           ref: master
+          
       - name: create release branch
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git checkout -b release/${{ github.event.inputs.version }}
           git push origin release/${{ github.event.inputs.version }}
+          
       - name: create pull request for release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          git config --global core.editor 'vim -c "set fenc=utf-8"'
           hub pull-request -b master -h "tkb/${{ github.event.inputs.version }}"
+          
       - name: merge tkb
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
