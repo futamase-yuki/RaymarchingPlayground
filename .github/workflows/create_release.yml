@@ -35,7 +35,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          hub pull-request --push -m "tkb/${{ github.event.inputs.version }}"
+          hub pull-request -h "tkb/${{ github.event.inputs.version }}"
       - name: merge tkb
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
