@@ -22,6 +22,7 @@ jobs:
       - name: checkout master
         uses: actions/checkout@v2
         with:
+          fetch-depth: 0 # https://zenn.dev/satococoa/articles/e026c0689e5678
           ref: master
       - name: create release branch
         env:
@@ -34,9 +35,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          git remote update
-          git fetch
-          git checkout tkb/${{ github.event.inputs.version }} origin/tkb/${{ github.event.inputs.version }}
+          git checkout tkb/${{ github.event.inputs.version }} 
           git push
           hub pull-request -b tkb/${{ github.event.inputs.version }} -m "tkb/${{ github.event.inputs.version }}"
       - name: merge tkb
