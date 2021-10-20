@@ -37,9 +37,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config --global core.editor 'vim -c "set fenc=utf-8"'
-          hub pull-request -b master -h "tkb/${{ github.event.inputs.version }}" -m "tkb/${{ github.event.inputs.version }}"
+          hub pull-request -b master -h "tkb/${{ github.event.inputs.version }}" -m "tkb/${{ github.event.inputs.version }}" -l "PR:draft"
           
-      - name: merge tkb
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: gh pr merge tkb/${{ github.event.inputs.version }} --merge
+#      - name: merge tkb
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#        run: gh pr merge tkb/${{ github.event.inputs.version }} --merge
