@@ -31,7 +31,6 @@ jobs:
           git checkout -b release/${{ github.event.inputs.version }}
           git push origin release/${{ github.event.inputs.version }}
       - name: create pull request for release
-        shell: bash
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
