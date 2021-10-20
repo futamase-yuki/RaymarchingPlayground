@@ -10,7 +10,12 @@ on:
         description: '年齢を入力してください'
         default: '12'
 
-....
+jobs:
+  test_job:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.TOKEN }}
+    steps:
       - name: Get Value
         run: |
           echo ${{ github.event.inputs.name }}
